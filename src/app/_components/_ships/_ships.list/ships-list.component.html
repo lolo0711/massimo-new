@@ -1,0 +1,7 @@
+<div class="ships" *ngIf="listShips">
+    <div class="row" *ngFor="let item of listShips.results">
+        <app-ships-detail [shipItem]="item" class="col-xs-6 col-sm-6 col-md-3"></app-ships-detail>
+    </div>
+</div>
+
+<!--<button ng-click="$ctrl.fetchNextPage()" class="btn btn-primary">Más datos</button>-->

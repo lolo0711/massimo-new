@@ -1,0 +1,10 @@
+<div class="panel panel-default ship">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{shipItem.name}}</h3>
+    </div>
+    <div class="panel-body">
+        <img (click)="goToDetall(shipItem)" src="https://starwars-visualguide.com/assets/img/starships/{{shipId}}.jpg" onerror="this.src='https://s3.amazonaws.com/placasrojastv/resources/plates/2012-09-13/0913094019.jpg'">
+    </div>
+    <app-ships-detall *ngIf="mostrarItem" [itemDetall]="shipItem"></app-ships-detall>
+
+</div>

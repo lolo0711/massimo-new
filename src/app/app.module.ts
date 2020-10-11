@@ -1,23 +1,47 @@
+﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
+import { fakeBackendProvider } from './_helpers';
+
+import { appRoutingModule } from './app.routing';
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import {AuthService} from './services/auth.service';
+import { HomeComponent } from './home';
+import { LoginComponent } from './login';
+import { RegisterComponent } from './register';
+import { AlertComponent } from './_components';
+import {ShipsComponent} from "@/_components/_ships/ships.component";
+import {ShipsListComponent} from "@/_components/_ships/_ships.list/ships-list.component";
+import {ShipsDetailComponent} from "@/_components/_ships/_ships.detail/ships.detail.component";
+import {ShipsDetallComponent} from "@/_components/_ships/._ships.detall/ships.detall.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [
-    AuthService
-  ],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        appRoutingModule
+    ],
+    declarations: [
+        AppComponent,
+        ShipsComponent,
+        ShipsDetallComponent,
+        ShipsListComponent,
+        ShipsDetailComponent,
+        HomeComponent,
+        LoginComponent,
+        RegisterComponent,
+        AlertComponent
+    ],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+        // provider used to create fake backend
+        fakeBackendProvider
+    ],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { };

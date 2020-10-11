@@ -1,0 +1,8 @@
+<h1>Ships</h1>
+
+<app-ships-list *ngIf="listShips" [listShips]="listShips"></app-ships-list>
+
+<div *ngIf="showError "class="alert alert-danger" role="alert">
+    Hi ha hagut un error al fer la petició
+</div>
+
